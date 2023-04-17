@@ -10,6 +10,7 @@ function create_user_and_database() {
 	    CREATE USER $database WITH LOGIN PASSWORD 'password';
 	    CREATE DATABASE $database;
 	    GRANT ALL PRIVILEGES ON DATABASE $database TO $database;
+		ALTER ROLE $database CREATEDB;
 EOSQL
 }
 
