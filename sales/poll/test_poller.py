@@ -36,14 +36,15 @@ def mocked_requests_get(*args, **kwargs):
             ]
         }
         return MockResponse(data, json.dumps(data),200)
-    
+
     return MockResponse(None, 404)
 
 class Test_Poller(unittest.TestCase):
-    
+
     @mock.patch('requests.get', side_effect=mocked_requests_get)
-    
+
     def test_fetch(self, mock_get):
+        AutomobileVO.objects.all().delete()
         poll(False)
         self.assertEqual(len(AutomobileVO.objects.all()), 3)
         AutomobileVO.objects.all().delete()
