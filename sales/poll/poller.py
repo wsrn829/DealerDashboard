@@ -23,7 +23,7 @@ def poll(repeat = True):
         
         if (not repeat):
             break
-        
+
         time.sleep(60)
 
 
