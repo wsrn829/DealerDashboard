@@ -12,14 +12,19 @@ django.setup()
 # Import models from service_rest, here.
 # from service_rest.models import Something
 
-def poll():
+def poll(repeat = True):
     while True:
         print('Service poller polling for data')
         try:
             # Write your polling logic, here
             pass
+        
         except Exception as e:
             print(e, file=sys.stderr)
+
+        if (not repeat):
+            break
+
         time.sleep(60)
 
 
