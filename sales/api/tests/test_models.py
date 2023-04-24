@@ -19,7 +19,7 @@ class Tests(TestCase):
         except ModuleNotFoundError:
             self.fail("Could not find 'Salesperson Model'")
 
-    def test_salesperson(self):
+    def test_customer(self):
         try:
             from sales_rest.models import Customer
         except ModuleNotFoundError:
