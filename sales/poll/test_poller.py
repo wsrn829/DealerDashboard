@@ -37,7 +37,7 @@ def mocked_requests_get(*args, **kwargs):
         }
         return MockResponse(data, json.dumps(data),200)
 
-    return MockResponse(None, 404)
+    return MockResponse(None, "", 404)
 
 class Test_Poller(unittest.TestCase):
 
