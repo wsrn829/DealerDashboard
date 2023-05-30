@@ -2,8 +2,10 @@ import json
 from service_rest.models import Technician, Appointment, AutomobileVO
 from django.test import TransactionTestCase, Client
 
+
 class Tests(TransactionTestCase):
-    ####TECHNICIANS ENDPOINTS
+
+    # ###TECHNICIANS ENDPOINTS
     def test_sales_people_list(self):
         Technician.objects.create(first_name="first", last_name="last", employee_id=1111)
 
@@ -40,7 +42,7 @@ class Tests(TransactionTestCase):
     ####APPOINTMENT ENDPOINTS
     def test_appointment_list(self):
         tech = Technician.objects.create(first_name="first", last_name="last", employee_id=1)
-        appointment = Appointment.objects.create(date_time="2023-04-20T14:39:00.000Z", reason="reason code 1", vin="2222", customer="Warren Longmire", technician=tech)
+        Appointment.objects.create(date_time="2023-04-20T14:39:00.000Z", reason="reason code 1", vin="2222", customer="Warren Longmire", technician=tech)
 
         client = Client()
         response = client.get("/api/appointments/")
