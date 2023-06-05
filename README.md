@@ -2,8 +2,8 @@
 
 Team:
 
-* Alan Y.C. Cheng - Which microservice?
-* Sarina Wu - Which microservice?
+* Alan Y.C. Cheng - Service
+* Sarina Wu - Sales
 
 ## Design
 
