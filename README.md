@@ -2,8 +2,8 @@
 
 Team:
 
-* Person 1 - Which microservice?
-* Person 2 - Which microservice?
+* Alan Y.C. Cheng - Which microservice?
+* Sarina Wu - Which microservice?
 
 ## Design
 
