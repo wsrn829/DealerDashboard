@@ -7,6 +7,8 @@ Team:
 
 ## Design
 
+## Inventory Frontend
+
 ## Service microservice
 
 Explain your models and integration with the inventory
