@@ -16,6 +16,8 @@ Team:
 Explain your models and integration with the inventory
 microservice, here.
 
+
+
 ## Sales microservice
 
 (Placeholder)
