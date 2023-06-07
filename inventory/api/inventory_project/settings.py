@@ -53,6 +53,7 @@ ALLOWED_HOSTS = [
     "localhost",
     "inventory-api",
     "project-beta-inventory-api-1",
+    "inventory-api",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
