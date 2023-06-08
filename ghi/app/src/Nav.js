@@ -123,7 +123,7 @@ function Nav() {
               <NavLink
                 className="nav-link active"
                 aria-current="page"
-                to="/salesperson"
+                to="/salespeople"
               >
                 Salespeople
               </NavLink>
@@ -132,7 +132,7 @@ function Nav() {
               <NavLink
                 className="nav-link active"
                 aria-current="page"
-                to="/salesperson/create"
+                to="/salespeople/create"
               >
                 Create a Salesperson
               </NavLink>
