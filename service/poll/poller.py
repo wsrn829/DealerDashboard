@@ -18,8 +18,8 @@ def get_automobile():
     content = json.loads(response.content)
     for auto in content["autos"]:
         AutomobileVO.objects.update_or_create(
-            import_href=auto["href"],
-            defaults={"vin": auto["vin"]}
+            vin=auto["vin"],
+            defaults={"sold": auto["sold"]}
         )
 
 
@@ -35,7 +35,7 @@ def poll(repeat=True):
         if (not repeat):
             break
 
-        time.sleep(5)
+        time.sleep(60)
 
 
 if __name__ == "__main__":
