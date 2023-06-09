@@ -76,35 +76,46 @@ Service Microservice: http://localhost:8080/
 Sales Microservice: http://localhost:8090/
 
 
-### Inventory (Monolith) Frontend
+### Inventory (Monolith) CRUD Route Documentation
 
-(Placeholder)
+List Manufacturers (GET)
+http://localhost:8100/api/manufacturers/
 
-
+Response data shape:
+```
+{
+  "manufacturers": [
+    {
+      "href": "/api/manufacturers/1/",
+      "id": 1,
+      "name": "Tesla"
+    }
+  ]
+}
+```
 
 
 Create a Manufacturer (POST)
 http://localhost:8100/api/manufacturers/
 
-### Service Microservice
+Request data shape:
+```
+{
+  "name": "Tesla"
+}
+```
 
 
 Response data shape:
 ```
 {
-	"date_time": "2023-06-07T23:04:00+00:00",
-	"reason": "Oil Not Change",
-	"status": "finished",
-	"vin": "SDGFEWHWEHW",
-	"customer": "asdfgasdg",
-	"technician": {
-		"first_name": "Barack",
-		"last_name": "Clinton",
-		"employee_id": 1266,
-		"id": 3
-	},
-	"id": 5,
-	"vip_status": false
+  "manufacturers": [
+    {
+      "href": "/api/manufacturers/1/",
+      "id": 1,
+      "name": "Tesla"
+    }
+  ]
 }
 ```
 
@@ -432,6 +443,182 @@ Response data shape:
 
 
 
+### Service Microservice CRUD Route Documentation
+
+List Technicians (GET)
+http://localhost:8080/api/technicians/
+
+Response data shape:
+```
+{
+	"technicians": [
+		{
+			"first_name": "Bill",
+			"last_name": "Clinton",
+			"employee_id": 1233,
+			"id": 2
+		}
+	]
+}
+```
+
+
+Create a Technician (POST)
+http://localhost:8080/api/technicians/
+
+Request data shape:
+```
+{
+	"first_name": "Barack",
+	"last_name": "Clinton",
+	"employee_id": 1267
+}
+```
+
+Response data shape:
+```
+{
+	"first_name": "Barack",
+	"last_name": "Clinton",
+	"employee_id": 1267,
+	"id": 6
+}
+```
+
+
+Delete a Technician (DELETE)
+http://localhost:8080/api/technicians/:id/
+
+Response data shape:
+```
+{
+	"deleted": true
+}
+```
+
+
+List Appointments (GET)
+http://localhost:8080/api/appointments/
+
+Response data shape:
+```
+{
+	"appointments": [
+		{
+			"date_time": "2023-06-07T23:04:00+00:00",
+			"reason": "Oil Not Change",
+			"status": "created",
+			"vin": "SDGHSDFHRRRHR",
+			"customer": "asdfgasdg",
+			"technician": {
+				"first_name": "Barack",
+				"last_name": "Clinton",
+				"employee_id": 1266,
+				"id": 3
+			},
+			"id": 1,
+			"vip_status": false
+		}
+	]
+}
+```
+
+
+Create an Appointment (POST)
+http://localhost:8080/api/appointments/
+
+Request data shape:
+```
+		{
+			"date_time": "2023-06-07T23:04:00+00:00",
+			"reason": "Oil Not Change",
+			"status": "created",
+			"vin": "SDGFWERHWHER",
+			"customer": "asdfgasdg",
+			"technician": 1266,
+			"id": 7
+		}
+```
+
+Response data shape:
+```
+{
+	"date_time": "2023-06-07T23:04:00+00:00",
+	"reason": "Oil Change",
+	"status": "created",
+	"vin": "SDGFWERHWHER",
+	"customer": "asdfgasdg",
+	"technician": {
+		"first_name": "Barack",
+		"last_name": "Clinton",
+		"employee_id": 1266,
+		"id": 3
+	},
+	"id": 7,
+	"vip_status": false
+}
+```
+
+
+Delete an Appointment (DELETE)
+http://localhost:8080/api/appointments/:id/
+
+Response data shape:
+```
+{
+	"deleted": true
+}
+```
+
+
+Cancel an Appointment (PUT)
+http://localhost:8080/api/appointments/:id/cancel/
+
+Response data shape:
+```
+{
+	"date_time": "2023-06-07T23:04:00+00:00",
+	"reason": "Oil Change",
+	"status": "canceled",
+	"vin": "SDGFEWHWEHW",
+	"customer": "asdfgasdg",
+	"technician": {
+		"first_name": "Barack",
+		"last_name": "Clinton",
+		"employee_id": 1266,
+		"id": 3
+	},
+	"id": 5,
+	"vip_status": false
+}
+```
+
+
+Mark an Appointment as Finished (PUT)
+http://localhost:8080/api/appointments/:id/finish/
+
+Response data shape:
+```
+{
+	"date_time": "2023-06-07T23:04:00+00:00",
+	"reason": "Oil Not Change",
+	"status": "finished",
+	"vin": "SDGFEWHWEHW",
+	"customer": "asdfgasdg",
+	"technician": {
+		"first_name": "Barack",
+		"last_name": "Clinton",
+		"employee_id": 1266,
+		"id": 3
+	},
+	"id": 5,
+	"vip_status": false
+}
+```
+
+
+
+
 ### Sales microservice CRUD Route Documentation
 
 List salespeople (GET)
@@ -451,8 +638,9 @@ Response data shape:
 }
 ```
 
-Create a Technician (POST)
-http://localhost:8080/api/technicians/
+
+Create a salesperson (POST)
+http://localhost:8090/api/salespeople/
 
 Request data shape:
 ```
@@ -475,8 +663,8 @@ Response data shape:
 ```
 
 
-Delete a Technician (DELETE)
-http://localhost:8080/api/technicians/<id>/
+Delete a specific salesperson (DELETE)
+http://localhost:8090/api/salespeople/:id/
 
 Response data shape:
 ```
@@ -485,8 +673,9 @@ Response data shape:
 }
 ```
 
-List Appointments (GET)
-http://localhost:8080/api/appointments/
+
+List customers	(GET)
+http://localhost:8090/api/customers/
 
 Response data shape:
 ```
@@ -503,8 +692,9 @@ Response data shape:
 }
 ```
 
-Create an Appointment (POST)
-http://localhost:8080/api/appointments/
+
+Create a customer	(POST)
+http://localhost:8090/api/customers/
 
 Request data shape:
 ```
@@ -529,8 +719,8 @@ Response data shape:
 ```
 
 
-Delete an Appointment (DELETE)
-http://localhost:8080/api/appointments/<id>/
+Delete a specific customer	(DELETE)
+http://localhost:8090/api/customers/:id/
 
 Response data shape:
 ```
@@ -540,9 +730,8 @@ Response data shape:
 ```
 
 
-
-Cancel an Appointment (PUT)
-http://localhost:8080/api/appointments/<id>/cancel/
+List sales	(GET)
+http://localhost:8090/api/sales/
 
 Response data shape:
 ```
@@ -577,8 +766,19 @@ Response data shape:
 ```
 
 
-Mark an Appointment as Finished (PUT)
-http://localhost:8080/api/appointments/<id>/finish/
+Create a sale	(POST)
+http://localhost:8090/api/sales/
+
+Request data shape:
+```
+{
+  "id": 50,
+  "price": 300000,
+	"automobile": "1C3CC5FB2AN120177",
+	"salesperson": 3,
+	"customer": 2
+}
+```
 
 Response data shape:
 ```
@@ -612,7 +812,9 @@ Response data shape:
 Delete a sale	(DELETE)
 http://localhost:8090/api/sales/:id/
 
-
-### Sales microservice
-
-(Placeholder)
+Response data shape:
+```
+{
+	"deleted": true
+}
+```
