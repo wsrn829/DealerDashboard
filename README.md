@@ -418,6 +418,7 @@ Delete a specific automobile	(DELETE)
 http://localhost:8100/api/automobiles/:vin/
 
 Response data shape:
+
 ```
 {
 	"href": "/api/automobiles/1C3CC5FB2AN120155/",
@@ -438,6 +439,7 @@ Response data shape:
 	},
 	"sold": false
 }
+```
 ```
 
 
