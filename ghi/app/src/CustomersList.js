@@ -21,8 +21,8 @@ function CustomersList() {
     <table className="table table-striped">
       <thead>
         <tr>
-          <th>First name</th>
-          <th>Last name</th>
+          <th>First Name</th>
+          <th>Last Name</th>
           <th>Phone Number</th>
           <th>Address</th>
         </tr>
