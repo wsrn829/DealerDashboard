@@ -17,7 +17,7 @@ export const ModelList = () => {
   }, []);
   return (
     <>
-      <h1>Automobiles</h1>
+      <h1>Models</h1>
       <table className="table table-striped">
         <thead>
           <tr>
