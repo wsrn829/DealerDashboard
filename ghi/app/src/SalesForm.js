@@ -130,11 +130,12 @@ function SalesForm({ getSales }) {
         <div className="row">
         <div className="offset-3 col-6">
           <div className="shadow p-4 mt-4">
-            <h1>Create a new sale</h1>
+            <h1>Record a new sale</h1>
             <form className={formClasses} onSubmit={handleSubmit} id="create-sale-form">
                 <div className="mb-3">
+                  Automobile VIN
                     <select onChange = {handleAutomobileChange} value={automobile} required id="automobile" name="automobile" className="form-select">
-                    <option value="">choose a vin</option>
+                    <option value="">Choose an automobile VIN...</option>
                     {newAutomobiles.map(automobile => {
                         return (
                         <option key={automobile.id} value={automobile.vin}>
@@ -146,21 +147,9 @@ function SalesForm({ getSales }) {
                 </div>
 
                 <div className="mb-3">
-                    <select onChange = {handleCustomerChange} value={customer} required id="customer" name="customer" className="form-select">
-                    <option value="">choose a customer</option>
-                    {customers.map(customer => {
-                        return (
-                        <option key={customer.id} value={customer.id}>
-                        {customer.first_name}
-                        </option>
-                        );
-                        })}
-                    </select>
-                </div>
-
-                <div className="mb-3">
+                  Salesperson
                     <select onChange = {handleSalespersonChange} value={salesperson} required id="salesperson" name="salesperson" className="form-select">
-                    <option value="">choose a salesperson</option>
+                    <option value="">Choose a salesperson...</option>
                     {salespeople.map(salesperson => {
                         return (
                         <option key={salesperson.id} value={salesperson.id}>
@@ -171,9 +160,24 @@ function SalesForm({ getSales }) {
                     </select>
                 </div>
 
+                <div className="mb-3">
+                  Customer
+                    <select onChange = {handleCustomerChange} value={customer} required id="customer" name="customer" className="form-select">
+                    <option value="">Choose a customer...</option>
+                    {customers.map(customer => {
+                        return (
+                        <option key={customer.id} value={customer.id}>
+                        {customer.first_name}
+                        </option>
+                        );
+                        })}
+                    </select>
+                </div>
+
                 <div className="form-floating mb-3">
+                Price
                 <input onChange = {handlePriceChange} value={price} placeholder="price" required type="number" name="price" id="price" className="form-control"/>
-                <label htmlFor="price">price</label>
+                <label htmlFor="Price"></label>
               </div>
 
               <button className="btn btn-primary">Create</button>
