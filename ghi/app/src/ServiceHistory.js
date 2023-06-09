@@ -21,9 +21,9 @@ export const ServiceHistory = () => {
   };
 
   const filterByVin = () => {
-    if (vin === "") {
-      alert("Please enter a VIN");
-    }
+    // if (vin === "") {
+    //   alert("Please enter a VIN");
+    // }
     setAppointments(
       appointments.filter((appt) => {
         return appt.vin === vin;

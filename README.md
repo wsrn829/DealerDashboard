@@ -78,182 +78,218 @@ Sales Microservice: http://localhost:8090/
 
 ### Inventory (Monolith) CRUD Route Documentation
 
-The application comes with a fully-accessible Inventory API that can keep track of the automobile inventory for the automobile dealership.
+List Manufacturers (GET)
+http://localhost:8100/api/manufacturers/
 
-It has fully functional RESTful endpoints for the following entities:
-
-Manufacturer: the company that manufactures the automobile
-VehicleModel: the model of a vehicle created by the manufacturer
-Automobile: the actual automobile of a specific vehicle model
-The following documentation describes the available functionality in the Inventory API.
-
-Manufacturers
-From Insomnia and your browser, you can access the manufacturer endpoints at the following URLs.
-
-Action	Method	URL
-List manufacturers	GET	http://localhost:8100/api/manufacturers/
-Create a manufacturer	POST	http://localhost:8100/api/manufacturers/
-Get a specific manufacturer	GET	http://localhost:8100/api/manufacturers/:id/
-Update a specific manufacturer	PUT	http://localhost:8100/api/manufacturers/:id/
-Delete a specific manufacturer	DELETE	http://localhost:8100/api/manufacturers/:id/
-Creating and updating a manufacturer requires only the manufacturer's name.
-
-{
-  "name": "Chrysler"
-}
-The return value of creating, getting, and updating a single manufacturer is its name, href, and id.
-
-{
-  "href": "/api/manufacturers/1/",
-  "id": 1,
-  "name": "Chrysler"
-}
-The list of manufacturers is a dictionary with the key "manufacturers" set to a list of manufacturers.
-
+Response data shape:
+```
 {
   "manufacturers": [
     {
       "href": "/api/manufacturers/1/",
       "id": 1,
-      "name": "Daimler-Chrysler"
+      "name": "Tesla"
     }
   ]
 }
-Vehicle models
-From Insomnia and your browser, you can access the vehicle model endpoints at the following URLs.
+```
 
-Action	Method	URL
-List vehicle models	GET	http://localhost:8100/api/models/
-Create a vehicle model	POST	http://localhost:8100/api/models/
-Get a specific vehicle model	GET	http://localhost:8100/api/models/:id/
-Update a specific vehicle model	PUT	http://localhost:8100/api/models/:id/
-Delete a specific vehicle model	DELETE	http://localhost:8100/api/models/:id/
-Creating a vehicle model requires the model name, a URL of an image, and the id of the manufacturer.
+Create a Manufacturer (POST)
+http://localhost:8100/api/manufacturers/
 
+Request data shape:
+```
 {
-  "name": "Sebring",
-  "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg",
-  "manufacturer_id": 1
+  "name": "Tesla"
 }
-Updating a vehicle model can take the name and/or the picture URL. It is not possible to update a vehicle model's manufacturer.
+```
 
+Response data shape:
+```
 {
-  "name": "Sebring",
-  "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg"
-}
-Getting the detail of a vehicle model, or the return value from creating or updating a vehicle model, returns the model's information and the manufacturer's information.
-
-{
-  "href": "/api/models/1/",
-  "id": 1,
-  "name": "Sebring",
-  "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg",
-  "manufacturer": {
-    "href": "/api/manufacturers/1/",
-    "id": 1,
-    "name": "Daimler-Chrysler"
-  }
-}
-Getting a list of vehicle models returns a list of the detail information with the key "models".
-
-{
-  "models": [
+  "manufacturers": [
     {
-      "href": "/api/models/1/",
-      "id": 1,
-      "name": "Sebring",
-      "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg",
-      "manufacturer": {
-        "href": "/api/manufacturers/1/",
-        "id": 1,
-        "name": "Daimler-Chrysler"
-      }
-    }
-  ]
-}
-Automobile information
-From Insomnia and your browser, you can access the automobile endpoints at the following URLs.
-
-Note: The identifiers for automobiles in this API are not integer ids. They are the Vehicle Identification Number (VIN) for the specific automobile.
-
-Action	Method	URL
-List automobiles	GET	http://localhost:8100/api/automobiles/
-Create an automobile	POST	http://localhost:8100/api/automobiles/
-Get a specific automobile	GET	http://localhost:8100/api/automobiles/:vin/
-Update a specific automobile	PUT	http://localhost:8100/api/automobiles/:vin/
-Delete a specific automobile	DELETE	http://localhost:8100/api/automobiles/:vin/
-You can create an automobile with its color, year, VIN, and the id of the vehicle model.
-
-{
-  "color": "red",
-  "year": 2012,
-  "vin": "1C3CC5FB2AN120174",
-  "model_id": 1
-}
-As noted, you query an automobile by its VIN. For example, you would use the URL
-
-http://localhost:8100/api/automobiles/1C3CC5FB2AN120174/
-
-to get the details for the car with the VIN "1C3CC5FB2AN120174". The details for an automobile include its model and manufacturer.
-
-{
-  "href": "/api/automobiles/1C3CC5FB2AN120174/",
-  "id": 1,
-  "color": "yellow",
-  "year": 2013,
-  "vin": "1C3CC5FB2AN120174",
-  "model": {
-    "href": "/api/models/1/",
-    "id": 1,
-    "name": "Sebring",
-    "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg",
-    "manufacturer": {
       "href": "/api/manufacturers/1/",
       "id": 1,
-      "name": "Daimler-Chrysler"
-    }
-  },
-  "sold": false
-}
-You can update the color, year, and sold status of an automobile.
-
-{
-  "color": "red",
-  "year": 2012,
-  "sold": true
-}
-Getting a list of automobiles returns a dictionary with the key "autos" set to a list of automobile information.
-
-{
-  "autos": [
-    {
-      "href": "/api/automobiles/1C3CC5FB2AN120174/",
-      "id": 1,
-      "color": "yellow",
-      "year": 2013,
-      "vin": "1C3CC5FB2AN120174",
-      "model": {
-        "href": "/api/models/1/",
-        "id": 1,
-        "name": "Sebring",
-        "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg",
-        "manufacturer": {
-          "href": "/api/manufacturers/1/",
-          "id": 1,
-          "name": "Daimler-Chrysler"
-        }
-      },
-      "sold": false
+      "name": "Tesla"
     }
   ]
 }
+```
 
 
 
 
 ### Service Microservice CRUD Route Documentation
 
-(Placeholder)
+List Technicians (GET)
+http://localhost:8080/api/technicians/
+
+Response data shape:
+```
+{
+	"technicians": [
+		{
+			"first_name": "Bill",
+			"last_name": "Clinton",
+			"employee_id": 1233,
+			"id": 2
+		}
+	]
+}
+```
+
+Create a Technician (POST)
+http://localhost:8080/api/technicians/
+
+Request data shape:
+```
+{
+	"first_name": "Barack",
+	"last_name": "Clinton",
+	"employee_id": 1267
+}
+```
+
+Response data shape:
+```
+{
+	"first_name": "Barack",
+	"last_name": "Clinton",
+	"employee_id": 1267,
+	"id": 6
+}
+```
+
+
+Delete a Technician (DELETE)
+http://localhost:8080/api/technicians/<id>/
+
+Response data shape:
+```
+{
+	"deleted": true
+}
+```
+
+List Appointments (GET)
+http://localhost:8080/api/appointments/
+
+Response data shape:
+```
+{
+	"appointments": [
+		{
+			"date_time": "2023-06-07T23:04:00+00:00",
+			"reason": "Oil Not Change",
+			"status": "created",
+			"vin": "SDGHSDFHRRRHR",
+			"customer": "asdfgasdg",
+			"technician": {
+				"first_name": "Barack",
+				"last_name": "Clinton",
+				"employee_id": 1266,
+				"id": 3
+			},
+			"id": 1,
+			"vip_status": false
+		}
+	]
+}
+```
+
+Create an Appointment (POST)
+http://localhost:8080/api/appointments/
+
+Request data shape:
+```
+		{
+			"date_time": "2023-06-07T23:04:00+00:00",
+			"reason": "Oil Not Change",
+			"status": "created",
+			"vin": "SDGFWERHWHER",
+			"customer": "asdfgasdg",
+			"technician": 1266,
+			"id": 7
+		}
+```
+
+Response data shape:
+```
+{
+	"date_time": "2023-06-07T23:04:00+00:00",
+	"reason": "Oil Change",
+	"status": "created",
+	"vin": "SDGFWERHWHER",
+	"customer": "asdfgasdg",
+	"technician": {
+		"first_name": "Barack",
+		"last_name": "Clinton",
+		"employee_id": 1266,
+		"id": 3
+	},
+	"id": 7,
+	"vip_status": false
+}
+```
+
+
+Delete an Appointment (DELETE)
+http://localhost:8080/api/appointments/<id>/
+
+Response data shape:
+```
+{
+	"deleted": true
+}
+```
+
+
+
+Cancel an Appointment (PUT)
+http://localhost:8080/api/appointments/<id>/cancel/
+
+Response data shape:
+```
+{
+	"date_time": "2023-06-07T23:04:00+00:00",
+	"reason": "Oil Change",
+	"status": "canceled",
+	"vin": "SDGFEWHWEHW",
+	"customer": "asdfgasdg",
+	"technician": {
+		"first_name": "Barack",
+		"last_name": "Clinton",
+		"employee_id": 1266,
+		"id": 3
+	},
+	"id": 5,
+	"vip_status": false
+}
+```
+
+
+Mark an Appointment as Finished (PUT)
+http://localhost:8080/api/appointments/<id>/finish/
+
+Response data shape:
+```
+{
+	"date_time": "2023-06-07T23:04:00+00:00",
+	"reason": "Oil Not Change",
+	"status": "finished",
+	"vin": "SDGFEWHWEHW",
+	"customer": "asdfgasdg",
+	"technician": {
+		"first_name": "Barack",
+		"last_name": "Clinton",
+		"employee_id": 1266,
+		"id": 3
+	},
+	"id": 5,
+	"vip_status": false
+}
+```
 
 
 

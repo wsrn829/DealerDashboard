@@ -26,10 +26,10 @@ export const AppointmentList = () => {
     };
 
     const response = await fetch(cancelUrl, fetchConfig);
-    if (response.ok) {
-      alert("Appointment Updated!");
-      setAppointments(appointments.filter((appt) => appt.status === "created"));
-    }
+    // if (response.ok) {
+    //   alert("Appointment Updated!");
+    //   setAppointments(appointments.filter((appt) => appt.status === "created"));
+    // }
   };
 
   const handleFinish = async (apptId) => {
@@ -40,10 +40,10 @@ export const AppointmentList = () => {
     };
 
     const response = await fetch(finishUrl, fetchConfig);
-    if (response.ok) {
-      alert("Appointment Updated!");
-      setAppointments(appointments.filter((appt) => appt.status === "created"));
-    }
+    // if (response.ok) {
+    //   alert("Appointment Updated!");
+    //   setAppointments(appointments.filter((appt) => appt.status === "created"));
+    // }
   };
 
   return (

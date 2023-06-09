@@ -36,11 +36,11 @@ export const AutoForm = () => {
     };
 
     const response = await fetch(createAutomobileUrl, fetchConfig);
-    if (response.ok) {
-      alert("New Automobile Created!");
-    } else {
-      alert("Invalid  Car: Possible already in inventory");
-    }
+    // if (response.ok) {
+    //   alert("New Automobile Created!");
+    // } else {
+    //   alert("Invalid  Car: Possible already in inventory");
+    // }
 
     setColor("");
     setYear("");

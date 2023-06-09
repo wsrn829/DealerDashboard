@@ -65,11 +65,11 @@ export const AppointmentForm = () => {
     };
 
     const response = await fetch(createAppointmentUrl, fetchConfig);
-    if (response.ok) {
-      alert("New Appointment Created!");
-    } else {
-      alert("Car already scheduled");
-    }
+    // if (response.ok) {
+    //   alert("New Appointment has been reated.");
+    // } else {
+    //   alert("Car is already scheduled");
+    // }
 
     setVin("");
     setCustomer("");
