@@ -389,6 +389,8 @@ Request data shape:
   "year": 2012,
   "sold": true
 }
+```
+
 
 Response data shape:
 ```
@@ -440,7 +442,7 @@ Response data shape:
 	"sold": false
 }
 ```
-```
+
 
 
 
