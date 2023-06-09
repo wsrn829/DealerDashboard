@@ -83,8 +83,11 @@ Sales Microservice: http://localhost:8090/
 
 
 
+Create a Manufacturer (POST)
+http://localhost:8100/api/manufacturers/
 
 ### Service Microservice
+
 
 Response data shape:
 ```
@@ -102,6 +105,327 @@ Response data shape:
 	},
 	"id": 5,
 	"vip_status": false
+}
+```
+
+
+Get a specific manufacturer	(GET)
+http://localhost:8100/api/manufacturers/:id/
+
+Response data shape:
+```
+{
+  "href": "/api/manufacturers/1/",
+  "id": 1,
+  "name": "Tesla"
+}
+```
+
+
+Update a specific manufacturer	(PUT)
+http://localhost:8100/api/manufacturers/:id/
+
+Request data shape:
+```
+{
+  "name": "Chrysler"
+}
+```
+
+
+Response data shape:
+```
+{
+  "manufacturers": [
+    {
+      "href": "/api/manufacturers/1/",
+      "id": 1,
+      "name": "Chrysler"
+    }
+  ]
+}
+```
+
+
+Delete a specific manufacturer	(DELETE)
+http://localhost:8100/api/manufacturers/:id/
+
+Response data shape:
+```
+{
+	"id": null,
+	"name": "Chrysler"
+}
+```
+
+
+List vehicle models	(GET)
+http://localhost:8100/api/models/
+
+Response data shape:
+```
+{
+  "models": [
+    {
+      "href": "/api/models/1/",
+      "id": 1,
+      "name": "Sebring",
+      "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg",
+      "manufacturer": {
+        "href": "/api/manufacturers/1/",
+        "id": 1,
+        "name": "Daimler-Chrysler"
+      }
+    }
+  ]
+}
+```
+
+Create a vehicle model	(POST)
+http://localhost:8100/api/models/
+
+Request data shape:
+```
+{
+  "name": "Sebring",
+  "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg",
+  "manufacturer_id": 1
+}
+```
+
+Response data shape:
+```
+{
+  "href": "/api/models/1/",
+  "id": 1,
+  "name": "Sebring",
+  "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg",
+  "manufacturer": {
+    "href": "/api/manufacturers/1/",
+    "id": 1,
+    "name": "Daimler-Chrysler"
+  }
+}
+```
+
+
+Get a specific vehicle model	(GET)
+http://localhost:8100/api/models/:id/
+
+Response data shape:
+```
+{
+  "href": "/api/models/1/",
+  "id": 1,
+  "name": "Sebring",
+  "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg",
+  "manufacturer": {
+    "href": "/api/manufacturers/1/",
+    "id": 1,
+    "name": "Daimler-Chrysler"
+  }
+}
+```
+
+
+Update a specific vehicle model	(PUT)
+http://localhost:8100/api/models/:id/
+
+Request data shape:
+```
+{
+  "name": "Sebring",
+  "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg"
+}
+```
+
+Response data shape:
+```
+{
+  "href": "/api/models/1/",
+  "id": 1,
+  "name": "Sebring",
+  "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg",
+  "manufacturer": {
+    "href": "/api/manufacturers/1/",
+    "id": 1,
+    "name": "Daimler-Chrysler"
+  }
+}
+```
+
+
+Delete a specific vehicle model	(DELETE)
+http://localhost:8100/api/models/:id/
+
+Response data shape:
+```
+{
+	"id": null,
+	"name": "Camry",
+	"picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg",
+	"manufacturer": {
+		"href": "/api/manufacturers/2/",
+		"id": 2,
+		"name": "Toyota"
+	}
+}
+```
+
+
+List automobiles	(GET)
+http://localhost:8100/api/automobiles/
+
+Response data shape:
+```
+{
+  "autos": [
+    {
+      "href": "/api/automobiles/1C3CC5FB2AN120174/",
+      "id": 1,
+      "color": "yellow",
+      "year": 2013,
+      "vin": "1C3CC5FB2AN120174",
+      "model": {
+        "href": "/api/models/1/",
+        "id": 1,
+        "name": "Sebring",
+        "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg",
+        "manufacturer": {
+          "href": "/api/manufacturers/1/",
+          "id": 1,
+          "name": "Daimler-Chrysler"
+        }
+      },
+      "sold": false
+    }
+  ]
+}
+```
+
+
+Create an automobile	(POST)
+http://localhost:8100/api/automobiles/
+
+Request data shape:
+```
+{
+  "color": "red",
+  "year": 2012,
+  "vin": "1C3CC5FB2AN120174",
+  "model_id": 1
+}
+```
+
+Response data shape:
+```
+{
+  "href": "/api/automobiles/1C3CC5FB2AN120174/",
+  "id": 1,
+  "color": "yellow",
+  "year": 2013,
+  "vin": "1C3CC5FB2AN120174",
+  "model": {
+    "href": "/api/models/1/",
+    "id": 1,
+    "name": "Sebring",
+    "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg",
+    "manufacturer": {
+      "href": "/api/manufacturers/1/",
+      "id": 1,
+      "name": "Daimler-Chrysler"
+    }
+  },
+  "sold": false
+}
+```
+
+
+Get a specific automobile	(GET)
+http://localhost:8100/api/automobiles/:vin/
+
+Response data shape:
+```
+{
+  "href": "/api/automobiles/1C3CC5FB2AN120174/",
+  "id": 1,
+  "color": "yellow",
+  "year": 2013,
+  "vin": "1C3CC5FB2AN120174",
+  "model": {
+    "href": "/api/models/1/",
+    "id": 1,
+    "name": "Sebring",
+    "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg",
+    "manufacturer": {
+      "href": "/api/manufacturers/1/",
+      "id": 1,
+      "name": "Daimler-Chrysler"
+    }
+  },
+  "sold": false
+}
+```
+
+
+Update a specific automobile	(PUT)
+http://localhost:8100/api/automobiles/:vin/
+
+Request data shape:
+```
+{
+  "color": "red",
+  "year": 2012,
+  "sold": true
+}
+
+Response data shape:
+```
+{
+  "href": "/api/automobiles/1C3CC5FB2AN120174/",
+  "id": 1,
+  "color": "red",
+  "year": 2012,
+  "vin": "1C3CC5FB2AN120174",
+  "model": {
+    "href": "/api/models/1/",
+    "id": 1,
+    "name": "Sebring",
+    "picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg",
+    "manufacturer": {
+      "href": "/api/manufacturers/1/",
+      "id": 1,
+      "name": "Daimler-Chrysler"
+    }
+  },
+  "sold": true
+}
+```
+
+
+Delete a specific automobile	(DELETE)
+http://localhost:8100/api/automobiles/:vin/
+
+Response data shape:
+```
+{
+	"href": "/api/automobiles/1C3CC5FB2AN120155/",
+	"id": null,
+	"color": "black",
+	"year": 2020,
+	"vin": "1C3CC5FB2AN120155",
+	"model": {
+		"href": "/api/models/3/",
+		"id": 3,
+		"name": "Civic",
+		"picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Chrysler_Sebring_front_20090302.jpg/320px-Chrysler_Sebring_front_20090302.jpg",
+		"manufacturer": {
+			"href": "/api/manufacturers/3/",
+			"id": 3,
+			"name": "Honda"
+		}
+	},
+	"sold": false
 }
 ```
 
@@ -127,9 +451,8 @@ Response data shape:
 }
 ```
 
-
-Create a salesperson (POST)
-http://localhost:8090/api/salespeople/
+Create a Technician (POST)
+http://localhost:8080/api/technicians/
 
 Request data shape:
 ```
@@ -152,8 +475,8 @@ Response data shape:
 ```
 
 
-Delete a specific salesperson (DELETE)
-http://localhost:8090/api/salespeople/:id/
+Delete a Technician (DELETE)
+http://localhost:8080/api/technicians/<id>/
 
 Response data shape:
 ```
@@ -162,9 +485,8 @@ Response data shape:
 }
 ```
 
-
-List customers	(GET)
-http://localhost:8090/api/customers/
+List Appointments (GET)
+http://localhost:8080/api/appointments/
 
 Response data shape:
 ```
@@ -181,9 +503,8 @@ Response data shape:
 }
 ```
 
-
-Create a customer	(POST)
-http://localhost:8090/api/customers/
+Create an Appointment (POST)
+http://localhost:8080/api/appointments/
 
 Request data shape:
 ```
@@ -208,8 +529,8 @@ Response data shape:
 ```
 
 
-Delete a specific customer	(DELETE)
-http://localhost:8090/api/customers/:id/
+Delete an Appointment (DELETE)
+http://localhost:8080/api/appointments/<id>/
 
 Response data shape:
 ```
@@ -219,8 +540,9 @@ Response data shape:
 ```
 
 
-List sales	(GET)
-http://localhost:8090/api/sales/
+
+Cancel an Appointment (PUT)
+http://localhost:8080/api/appointments/<id>/cancel/
 
 Response data shape:
 ```
@@ -255,19 +577,8 @@ Response data shape:
 ```
 
 
-Create a sale	(POST)
-http://localhost:8090/api/sales/
-
-Request data shape:
-```
-{
-  "id": 50,
-  "price": 300000,
-	"automobile": "1C3CC5FB2AN120177",
-	"salesperson": 3,
-	"customer": 2
-}
-```
+Mark an Appointment as Finished (PUT)
+http://localhost:8080/api/appointments/<id>/finish/
 
 Response data shape:
 ```
@@ -301,9 +612,7 @@ Response data shape:
 Delete a sale	(DELETE)
 http://localhost:8090/api/sales/:id/
 
-Response data shape:
-```
-{
-	"deleted": true
-}
-```
+
+### Sales microservice
+
+(Placeholder)
