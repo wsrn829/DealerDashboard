@@ -1,4 +1,4 @@
-# CarCar
+# DealerDashboard
 
 This is a program to help you manage your car dealership.
 
@@ -9,9 +9,9 @@ Brought to you by:
 
 ## Step-by-step Instructions to Run the Project
 
-1. Open Terminal in your computer
+1. Open Terminal on your computer
 
-2. Go to your folder where you want to save this program (replace the path with the path to your folder destination):
+2. Go to the folder where you want to save this program (replace the path with the path to your folder destination):
 
 ```
 cd {path to your folder}
@@ -20,13 +20,13 @@ cd {path to your folder}
 3. Run the following command in your Terminal to download the code of this program to your computer via the "Clone with HTTPS" method:
 
 ```
-git clone https://gitlab.com/alanyccheng/project-beta.git
+git clone https://github.com/wsrn829/DealerDashboard.git
 ```
 
 4. Dive into the newly downloaded program folder:
 
 ```
-cd project-beta
+cd DealerDashboard
 ```
 
 5. Create a new database (Docker Volume) with the name "beta-data" in your local computer for this program to store data in:
